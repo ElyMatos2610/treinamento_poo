@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Desafio POO + DOM - Squad 1</title>
+  <script src="script.js" defer></script>
+</head>
+<body>
+
+  <h1>📱 Aplicativo: Squad1 - GrupoBananaTech</h1>
+  <hr>
+
+  <!-- 1. PAINEL DE EXIBIÇÃO (DOM + GET) -->
+  <h2>Painel de Exibição</h2>
+    <div id="info">
+        <p><strong>Nome da música:</strong> <span id="titulo">----</span></p>
+        <p><strong>Estilo da música:</strong> <span id="estilo">----</span></p>
+        <p><strong>Tempo da música (segundos):</strong> <span id="tempo">----</span></p>
+        <p><strong>Status da música:</strong> <span id="status">Pausada</span></p>
+    </div>
+  <hr>
+
+  <!-- 2. CONTROLES E FORMULÁRIOS (DOM + SET) -->
+   <h3>Selecionar Música</h3>
+    <label for="select-musica">Escolha uma música:</label>
+    <select id="select-musica">
+        <option value="0">Música 1</option>
+        <option value="1">Música 2</option>
+        <option value="2">Música 3</option>
+    </select>
+
+  <h3>Ações do Aplicativo</h3>
+    <button id="btnPlay">Play</button>
+    <button id="btnPausar">Pausar</button>
+    <button id="btnVoltar">Voltar</button>
+    <button id="btnPassar">Passar</button>
+  <br><br>
+  <hr>
+
+  <!-- 3. CONSOLE VISUAL -->
+  <h3>Console de Operações:</h3>
+  <div id="console-output"></div>
+
+</body>
+</html>
