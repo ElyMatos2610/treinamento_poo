@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Delivery - Squad A</title>
+</head>
+
+<body>
+
+    <h1>📱 Squad A - Delivery</h1>
+    <hr>
+
+    <h2>Painel de Informações</h2>
+
+    <p>Status do pedido: <strong id="info-1">Pendente</strong></p>
+
+    <p>Código do pedido: <strong id="info-privada">Não gerado</strong></p>
+
+    <hr>
+
+    <h3>Gerenciar pedido</h3>
+
+    <label>Escolher status:</label>
+
+    <select id="status">
+        <option value="Pendente">Pendente</option>
+        <option value="Em preparo">Em preparo</option>
+        <option value="Saiu para entrega">Saiu para entrega</option>
+        <option value="Entregue">Entregue</option>
+    </select>
+
+    <button onclick="alterarStatus()">Atualizar status</button>
+
+    <br><br>
+
+    <button onclick="gerarCodigo()">Gerar código do pedido</button>
+
+    <br><br>
+
+    <label>Digitar código:</label>
+    <input type="text" id="campo-input">
+
+    <button onclick="verificarCodigo()">Confirmar código</button>
+    
+    <br><br>
+    
+    <button onclick="cancelarPedido()">Cancelar pedido</button>
+    <hr>
+
+    <h3>Console de Operações:</h3>
+
+    <div id="console-output"></div>
+
+    <script>
+
+        // CLASSE PEDIDO (POO)
+
+        class Pedido {
+
+            #status;
+            #codigo;
+
+            constructor(pedido, preco) {
+                this.pedido = pedido;
+                this.preco = preco;
+                this.#status = "Pendente";
+                this.#codigo = "";
+            }
+
+            getStatus() {
+                return this.#status;
+            }
+
+            setStatus(novoStatus) {
+                this.#status = novoStatus;
+            }
+
+            getCodigo() {
+                return this.#codigo;
+            }
+
+            setCodigo(novoCodigo) {
+                this.#codigo = novoCodigo;
+            }
+
+        }
+
+        // CRIANDO O OBJETO
+
+        const pedido01 = new Pedido("Hambúrguer", 40);
+
+        // CONSOLE
+
+        function exibirNoConsole(mensagem) {
+
+            document.getElementById("console-output").innerHTML +=
+                "<p>" + mensagem + "</p>";
+
+        }
+
+        // ALTERAR STATUS
+
+        function alterarStatus() {
+
+            let novoStatus = document.getElementById("status").value;
+
+            pedido01.setStatus(novoStatus);
+
+            document.getElementById("info-1").innerText =
+                pedido01.getStatus();
+
+            exibirNoConsole("Status atualizado: " + novoStatus);
+
+        }
+
+        // GERAR CÓDIGO
+
+        function gerarCodigo() {
+
+            let codigo = Math.floor(1000 + Math.random() * 9000);
+
+            pedido01.setCodigo(codigo.toString());
+
+            document.getElementById("info-privada").innerText =
+                pedido01.getCodigo();
+
+            exibirNoConsole("Código do pedido gerado!");
+
+        }
+
+        // VERIFICAR CÓDIGO
+
+        
+function verificarCodigo() {
+
+    let digitado = document.getElementById("campo-input").value;
+
+    if (pedido01.getCodigo() === "") {
+
+        exibirNoConsole("Gere um código primeiro!");
+
+    }
+
+    else if (digitado === pedido01.getCodigo()) {
+
+        pedido01.setStatus("Entregue");
+
+        document.getElementById("info-1").innerText =
+            pedido01.getStatus();
+
+        document.getElementById("status").value = "Entregue";
+
+        exibirNoConsole("Código correto! Pedido entregue.");
+
+        alert("Código correto! Pedido entregue.");
+
+    }
+
+    else {
+
+        exibirNoConsole("Código incorreto! Tente novamente.");
+
+        alert("Código incorreto!");
+
+    }
+
+}
+
+function cancelarPedido() {
+
+    if (pedido01.getStatus() === "Entregue") {
+
+        alert("Não é possível cancelar um pedido já entregue.");
+
+    }
+
+    else if (pedido01.getStatus() === "Cancelado") {
+
+        alert("O pedido já foi cancelado.");
+
+    }
+
+    else {
+
+        pedido01.setStatus("Cancelado");
+
+        document.getElementById("info-1").innerText =
+            pedido01.getStatus();
+
+        exibirNoConsole("Pedido cancelado!");
+
+        alert("Pedido cancelado com sucesso!");
+
+    }
+
+}
+
+
+    </script>
+
+</body>
+</html>
